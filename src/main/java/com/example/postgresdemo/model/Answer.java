@@ -16,7 +16,9 @@ public class Answer extends AuditModel {
             sequenceName = "answer_sequence",
             initialValue = 1000
     )
-    private Long id;
+    //changed name from id to answerId because normalized name for id in response of api /questions/{questionId}/answers
+    //was computed as QuestionId
+    private Long answerId;
 
     @Column(columnDefinition = "text")
     private String text;
@@ -27,12 +29,12 @@ public class Answer extends AuditModel {
     @JsonIgnore
     private Question question;
 
-    public Long getId() {
-        return id;
+    public Long getAnswerId() {
+        return answerId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAnswerId(Long answerId) {
+        this.answerId = answerId;
     }
 
     public String getText() {

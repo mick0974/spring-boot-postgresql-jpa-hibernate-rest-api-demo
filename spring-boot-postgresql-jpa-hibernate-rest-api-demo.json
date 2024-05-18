@@ -22,7 +22,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "id": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -75,10 +97,12 @@
                     "type": "string"
                   },
                   "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "required": true
                   },
                   "title": {
-                    "type": "string"
+                    "type": "string",
+                    "required": true
                   },
                   "updatedAt": {
                     "type": "string"
@@ -172,13 +196,15 @@
                     "type": "string"
                   },
                   "description": {
-                    "type": "string"
+                    "type": "string",
+                    "required": true
                   },
                   "id": {
                     "type": "integer"
                   },
                   "title": {
-                    "type": "string"
+                    "type": "string",
+                    "required": true
                   },
                   "updatedAt": {
                     "type": "string"
@@ -214,7 +240,23 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object"
+                    "type": "object",
+                    "properties": {
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "answerId": {
+                        "type": "integer"
+                      },
+                      "text": {
+                        "type": "string"
+                      }
+                    }
                   }
                 }
               }
@@ -248,7 +290,7 @@
                   "type": "object",
                   "title": "com.example.postgresdemo.model.Answer",
                   "properties": {
-                    "id": {
+                    "answerId": {
                       "type": "integer"
                     },
                     "text": {
@@ -347,9 +389,6 @@
           "default": {
             "description": "others"
           }
-        },
-        "x-endpoint-constraints": {
-          "$ref": "#/components/x-endpoint-constraints/~1questions~1{questionId}~1answers~1{answerId}/delete"
         }
       },
       "put": {
@@ -384,7 +423,7 @@
                   "type": "object",
                   "title": "com.example.postgresdemo.model.Answer",
                   "properties": {
-                    "id": {
+                    "answerId": {
                       "type": "integer"
                     },
                     "text": {
@@ -432,7 +471,8 @@
                     "type": "string"
                   },
                   "text": {
-                    "type": "string"
+                    "type": "string",
+                    "required": true
                   },
                   "updatedAt": {
                     "type": "string"
@@ -442,28 +482,11 @@
               }
             }
           }
-        },
-        "x-endpoint-constraints": {
-          "$ref": "#/components/x-endpoint-constraints/~1questions~1{questionId}~1answers~1{answerId}/put"
         }
       }
     }
   },
   "components": {
-    "x-endpoint-constraints": {
-      "/questions/{questionId}/answers/{answerId}": {
-        "delete": {
-          "valid-path-conditions": [
-            "( this.<com.example.postgresdemo.controller.AnswerController: com.example.postgresdemo.repository.QuestionRepository questionRepository>.<com.example.postgresdemo.repository.QuestionRepository: boolean existsById(java.lang.Object)>({questionId}) != 0 )"
-          ]
-        },
-        "put": {
-          "valid-path-conditions": [
-            "( this.<com.example.postgresdemo.controller.AnswerController: com.example.postgresdemo.repository.QuestionRepository questionRepository>.<com.example.postgresdemo.repository.QuestionRepository: boolean existsById(java.lang.Object)>({questionId}) != 0 )"
-          ]
-        }
-      }
-    },
     "x-endpoint-interdependence": {},
     "x-global-variables-info": {}
   }

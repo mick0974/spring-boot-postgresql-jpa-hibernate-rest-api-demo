@@ -4,11 +4,13 @@ import com.example.postgresdemo.exception.ResourceNotFoundException;
 import com.example.postgresdemo.model.Question;
 import com.example.postgresdemo.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class QuestionController {
@@ -17,8 +19,8 @@ public class QuestionController {
     private QuestionRepository questionRepository;
 
     @GetMapping("/questions")
-    public Page<Question> getQuestions(Pageable pageable) {
-        return questionRepository.findAll(pageable);
+    public List<Question> getQuestions(Pageable pageable) {
+        return questionRepository.findAll();
     }
 
 
